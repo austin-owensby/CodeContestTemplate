@@ -15,29 +15,10 @@ public class Options {
     public bool? OnWeekends { get; set; }
     public int? Date { get; set; }
     public int? Year { get; set; }
-    public string? FormattedName => HumanReadableName?.Replace(" ", string.Empty);
+    public Dictionary<string, DateOnly> EventDictionary { get; set; } = [];
+    public string? FormattedNameUpper => HumanReadableName?[0].ToString().ToUpper() + HumanReadableName?[1..]?.Replace(" ", string.Empty);
+    public string? FormattedNameLower => HumanReadableName?[0].ToString().ToLower() + HumanReadableName?[1..]?.Replace(" ", string.Empty);
 }
-
-/*
-DEBUG
-public class Options {
-    public string? HumanReadableName { get; set; } = "Test Project";
-    public string? BaseURL { get; set; } = "google.com";
-    public bool? OneOff { get; set; } = false;
-    public bool? ScheduledReleases { get; set; } = true;
-    public int? TotalPuzzles { get; set; } = 25;
-    public int? PartsPerPuzzle { get; set; } = 2;
-    public bool? SeparateInputs { get; set; } = false;
-    public bool? PrivateInputs { get; set; } = true;
-    public int? UtcOffset { get; set; } = 7;
-    public int? Month { get; set; } = 12;
-    public bool? SpecificDate { get; set; } = true;
-    public bool? OnWeekends { get; set; } = true;
-    public int? Date { get; set; } = 1;
-    public int? Year { get; set; } = 2015;
-    public string? FormattedName => HumanReadableName?.Replace(" ", string.Empty);
-}
-*/
 
 public class InputService {
     public static Options GetOptionsFromInputs() {
